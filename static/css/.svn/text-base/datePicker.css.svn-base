@@ -1,0 +1,21 @@
+.datePicker{ font-family: "ËÎÌו"; font-size: 12px; color: #000;border:0;} 
+.datePicker .dateInput {display:block;border:1px solid #7F9DB9;background: url(../images/mnbg.gif) no-repeat 0 -280px; width: 113px; height:24px; padding-left: 5px;padding-top:4px; cursor: pointer;z-index:1;font-size:12px}
+.datePicker .dateInputDis {display:block;border:1px solid #7F9DB9;background: url(../images/mnbg.gif) no-repeat -192px -280px; width: 105px; height:17px; padding-left: 5px;padding-top:4px; cursor:default;z-index:1;font-size:12px;color:#999;}
+.datePicker .datePickerTable {display: none;position: absolute; background:#F1F1F1; border: 1px solid #ccc; width: 212px;z-index:1005}
+.datePicker span {float:left; display: block; width: 20px; height:17px; padding-top:4px;}
+.datePicker .datePickerTable .yearMonth {padding: 3px 0 0 22px;height: 25px; border-bottom: 1px solid #fff; background:#DCDCDC;}
+.datePicker .datePickerTable .yearMonth .YearMonthSelect {float: left;width: 87px; height: 20px; margin: 0 20px 0 20px;font-size:12px;font-family:ËÎÌו}
+.datePicker .datePickerTable .preMonth {  background: url(../images/mnbg.gif) no-repeat -190px -220px; width: 18px; height: 18px; cursor: pointer}
+.datePicker .datePickerTable .nextMonth {  background: url(../images/mnbg.gif) no-repeat -210px -220px; width: 18px; height: 18px; cursor: pointer}
+.datePicker .datePickerTable .preMonthDisabled {  background: url(../images/mnbg.gif) no-repeat -150px -220px; width: 18px; height: 18px; cursor: default}
+.datePicker .datePickerTable .nextMonthDisabled {  background: url(../images/mnbg.gif) no-repeat -170px -220px; width: 18px; height: 18px; cursor: default}
+.datePicker .datePickerTable ul {margin:0; padding: 0;display: block;list-style: none;}
+.datePicker .datePickerTable ul li {float: left; display: inline; margin-left: 1px;margin-top:1px; width: 29px;padding-top:3px; height:18px;background: #fff; text-align: center}
+.datePicker .datePickerTable .weekCaption li {background: #F1F1F1; color: #666; font-weight: bold;}
+.datePicker .datePickerTable .dateList li {color: blue; cursor: pointer;font-family:Verdana}
+.datePicker .datePickerTable .dateList .hover {background:#D6EBFF}
+.datePicker .datePickerTable .dateList .noCurrentMonth {background: #EBEBEB; color: #9A9A9A; cursor: default}
+.datePicker .datePickerTable .dateList .currentDate {background: #0000EE; color: #FFF; cursor: pointer}
+.datePicker .datePickerTable .dateList .currentDateNoThisMonth {background: #EBEBEB; color: #0000DD; cursor: default}
+.maskFrame {position:absolute; width:0px; height:0px; top:0px; left:0px; display:none;border:none}
+.inputlong{width:500px}

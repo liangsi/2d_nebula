@@ -1,0 +1,106 @@
+$def with (content)
+  
+   <link href="/static/css/detail.css" rel="stylesheet">
+    	<div class="main row">
+    		<div class="col-sm-8">
+    			<div class="row">
+	    			<div class="col-sm-4">
+	    				<div class="thumbnail">
+					    	<img src="/static/test.jpg" alt="...">
+				  		</div>
+	    			</div>
+	    			<div class="meta-info col-sm-8">
+	  				<div class="nav">
+	    				<h4 class="navbar-header">$content['Main_Title']</h4>
+		    			<div class="rating navbar-right navbar-text">
+		    				<span class="glyphicon glyphicon-star"></span>
+		    				<span class="glyphicon glyphicon-star"></span>
+		    				<span class="glyphicon glyphicon-star"></span>
+		    				<span class="glyphicon glyphicon-star"></span>
+		    				<span class="glyphicon glyphicon-star"></span>
+		    			</div>
+	    			</div>
+	    			<div class="row">
+	    				<dl class="dl-horizontal">
+	    					<dt>Type</dt>
+	    					<dd>$content['Type']</dd>
+	    					<dt>Year</dt>
+	    					<dd>$content['Year']</dd>
+							$if content['staffs'].get('Direction',None):
+								<dt>Director</dt>
+								<dd>$'. '.join(content['staffs']['Direction'])</dd>
+							$if content['staffs'].get('Animation Work',None):
+								<dt>Animation Work</dt>
+								<dd>$'. '.join(content['staffs']['Animation Work'])</dd>
+							$if content['staffs'].get('Original Work',None):
+								<dt>Original Work</dt>
+								<dd>$'. '.join(content['staffs']['Original Work'])</dd>
+	    				</dl>
+	    			</div>
+    			</div>
+				</div>
+				<div class="description detail">
+					<h4 class="subtitle">Description</h4>
+	    			<p>$content['desc']</p>
+	    		</div>    	
+				<div class="char-cast detail">
+					<h4 class="subtitle">Characters.Casts</h4>
+	    			<table class="table table-striped">
+	    				<thead>
+	    					<tr>
+	    						<th>
+	    							Character
+	    						</th>
+	    						<th>
+	    							Cast
+	    						</th>
+	    					</tr>
+	    				</thead>
+	    				<tbody>
+						$for i in content['casts']:
+	    					<tr>
+	    						<td>$i['char']</td>
+	    						<td>$i['creator']</td>
+	    					</tr>
+	    				</tbody>
+					</table>
+	    		</div>   
+				<div class="related detail">
+					<h4 class="subtitle">Related Animes</h4>
+	    			<p>While watching a movie, Gintoki comes upon a 'movie thief,' a figure in Japanese culture often depicted as a man with a video camera as a head.
+	    			</p>
+	    		</div>   
+				<div class="pictures detail">
+					<h4 class="subtitle">Pictures</h4>
+					<div class="row">
+		    			<div class="thumbnail col-sm-3 pic">
+						    <img class="media-object" src="/static/test.jpg" alt="...">
+					  	</div>
+		    			<div class="thumbnail col-sm-3 pic">
+						    <img class="media-object" src="/static/test.jpg" alt="...">
+					  	</div>
+		    			<div class="thumbnail col-sm-3 pic">
+						    <img class="media-object" src="/static/test.jpg" alt="...">
+					  	</div>
+		    			<div class="thumbnail col-sm-3 pic">
+						    <img class="media-object" src="/static/test.jpg" alt="...">
+					  	</div>
+		    			<div class="thumbnail col-sm-3 pic">
+						    <img class="media-object" src="/static/test.jpg" alt="...">
+					  	</div>
+		    			<div class="thumbnail col-sm-3 pic">
+						    <img class="media-object" src="/static/test.jpg" alt="...">
+					  	</div>
+		    			<div class="thumbnail col-sm-3 pic">
+						    <img class="media-object" src="/static/test.jpg" alt="...">
+					  	</div>
+		    			<div class="thumbnail col-sm-3 pic">
+						    <img class="media-object" src="/static/test.jpg" alt="...">
+					  	</div>
+				  	</div>
+	    		</div>   	
+    		</div>
+			<div class="col-sm-3 col-sm-offset-1 sidebar">
+				Tweets!!!
+			</div>      	
+      	</div>

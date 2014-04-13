@@ -1,0 +1,53 @@
+$def with (anime_list)
+    
+    <link href="/static/css/search.css" rel="stylesheet">
+	<div class="main row">
+    		<ul class="col-sm-8 results">
+				$for i in anime_list:
+							<li class="media entry">
+								<div class="col-md-3">
+									<a href="#">
+										<div class="thumbnail">
+											<img class="media-object" src="/static/test.jpg" alt="...">
+										</div>
+									</a>
+								</div>
+								<div class="media-body col-md-9">
+									<div class="nav">
+										<h4 class="navbar-header"><a href="#">$i['Main_Title']</a></h4>
+										<div class="rating navbar-right navbar-text">
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+										</div>
+									</div>
+									<div class="row">
+										<dl class="dl-horizontal">
+											<dt>Type</dt>
+											<dd>$i['Type']</dd>
+											<dt>Year</dt>
+											<dd>$i['Year']</dd>
+											$if i['staffs'].get('Direction',None):
+												<dt>Director</dt>
+												<dd>$'. '.join(i['staffs']['Direction'])</dd>
+											$if i['staffs'].get('Animation Work',None):
+												<dt>Animation Work</dt>
+												<dd>$'. '.join(i['staffs']['Animation Work'])</dd>
+											$if i['staffs'].get('Original Work',None):
+												<dt>Original Work</dt>
+												<dd>$'. '.join(i['staffs']['Original Work'])</dd>
+											<dt>description</dt>
+											<dd>$i['desc'][:100]  ...
+											</dd>
+										</dl>
+									</div>
+								</div>
+							</li>
+			</ul>
+			<div class="col-sm-3 col-sm-offset-1 sidebar">
+				Tweets!!!
+			</div>      	
+      	</div>
+		<script src="/static/js/search.js" type="text/javascript"></script>

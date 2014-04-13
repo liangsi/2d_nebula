@@ -1,0 +1,37 @@
+.panel {border: 1px solid #ccc;padding-left:20px}
+
+
+.tools td,.tools th{padding:15px 0 30px 15px;background:url(../images/gongjuxiang_bg.gif) repeat-x top left;vertical-align:top;text-align:left;}
+.tools th{width:55px}
+.tools h3{margin:0 0 8px 0;font-size:14px;font-weight:bold;color:#000}
+.tools p{margin:0 0 30px 0}
+.tools .cont {width:360px}
+
+.tools-left{float:left;width:465px;*width:480px;margin-right:24px;margin-top:40px;position:relative;}
+.tools-right{float:left;width:465px;*width:480px;margin-top:40px;position:relative;}
+.tools-left td,.tools-right td,.tools-left th,.tools-right th{padding:20px 0 0 15px;height:125px;*height:105px}
+
+.tools-right .cont {padding:10px 5px 0 0;border:none;margin:0 20px 10px 0}
+.tools-title {position:absolute;margin:0px;left:10px;top:-10px;padding:4px 6px 2px 6px;font-weight:bold; background-color:#fff;border:1px solid #CCC;}
+
+.tagc {float:left;width:366px;padding-left:10px;background:url(../images/dot.gif) repeat-x bottom;}
+.tagc a {float:left;display:block;height:30px;margin-right:9px;padding-left:9px;background:url(../images/tagc.gif) 0 0;text-decoration:none;color:#000}
+.tagc a:hover {text-decoration:underline;}
+.tagc a p{float:left;height:21px;margin:0;padding:8px 9px 0 0;background:url(../images/tagc.gif) top right;cursor:pointer;text-indent:0;font-size:14px}
+.tagc a.current {background:url(../images/tagc.gif) 0 -30px;font-weight:bold;}
+.tagc a.current p {height:22px;background:url(../images/tagc.gif)  right -30px;}
+
+.foot {clear:both;margin:0 auto;width:984px;padding:14px 0 20px 0;background: url(../images/fbg.gif) repeat-x 0 top;line-height:20px;text-align:center;color:#808080;}
+.foot a {color:#808080}
+
+#ClassicsToolContent span {display:none;}
+#ToolSelect{top:260px;margin-left:-175px;left:50%;width:350px;height:135px;}
+#ToolSelect b{display:block;text-align:center;padding-top:10px}
+#ToolSelect a{font-size:14px;margin:15px}
+
+.floatWindow{display:none;position:absolute;border:1px solid #D6DEEC;border-top:2px solid #3C61A4;background:#fff;z-index:1001}
+.floatWindow h3{position:relative;padding:6px 5px 6px 10px;background:#D6DEEC;font-weight:normal;margin:0;color:#3C61A4;font-size:12px}
+.floatWindow .closebtn{display:block;position:absolute;width:13px;height:13px;top:7px;right:5px;background:url(../images/mnbg.gif) no-repeat -231px -154px #fff;overflow:hidden;cursor:pointer;}
+.floatWindow p{padding:15px;margin:0px}
+.maskDivNoColor{display:none;width:100%;position:absolute;left:0px;top:0px;background:#FFF;opacity:0.01;filter:alpha(opacity=1);-moz-opacity:0.01;z-index:999}
+.maskDiv{display:none;width:100%;position:absolute;left:0px;top:0px;background:#000;opacity:0.3;filter:alpha(opacity=30);-moz-opacity:0.3;z-index:999}
