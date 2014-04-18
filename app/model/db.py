@@ -30,19 +30,35 @@ class Database(object):
         for res in results:
             anime = {}
             anime['oid'] = str(res['obj']['_id'])
+            anime['title'] = res['obj']['title']
+            anime['images'] = res['obj']['images']
             anime['type'] = res['obj'].get('type', 'N/A')
             anime['begin_date'] = res['obj']['begin_date']
             anime['end_date'] = res['obj']['end_date']
             anime['directors'] = res['obj']['directors']
             anime['company'] = res['obj']['company']
             anime['creator'] = res['obj']['creator']
-            anime['desc'] = res['obj']['desc'][0] if res['obj']['desc'] else []
+            anime['desc'] = sorted(res['obj']['desc'], key=len)[-1] if res['obj']['desc'] else []
 
             animes.append(anime)
 
         return animes
 
-    def get_details(oid):
+    def get_details(self, oid):
         # TODO add object id to related
         result = self.integrated.find_one({'_id': ObjectId(oid)})
-        return result
+
+        # related animes(oid, title, img)
+        related_animes = []
+        if result['related']:
+            for res in result['related']:
+                self.integrated.find_one({'absoluteanime_url' : anime['url']})
+
+                anime = {}
+                anime['oid'] = str(res['obj']['_id'])
+                anime['title'] = res['title']
+                anime['images'] = res['images']
+
+                related_animes.append(anime)
+
+        return result, related_animes
