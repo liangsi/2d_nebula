@@ -26,10 +26,10 @@ class AmazonDvd():
 
     def find_product(self, keywords, Director=None):
         '''
-        return top 10 products
+        return top 3 products
         '''
         items = self.api.item_search(
-            'DVD', Keywords=keywords, Director=None, limit=10,
+            'DVD', Keywords=keywords, Director=None, limit=3,
             Sort='relevancerank', MerchantId='Amazon', ResponseGroup='Large')
 
         dvds = []
