@@ -17,16 +17,16 @@ for one in absoluteanime.find():
     if one['jp_info'].get('creator', None):
         names = one['jp_info']['creator']
         creators = []
-        
+
         for n in names:
             creators.extend(
                 [y for y in [x.strip() for x in n.split(',')] if y])
 
         absoluteanime.update(
-        {'url': one['url']},
-        {'$set':{
-            'jp_info.creator': creators,
-        }})
+            {'url': one['url']},
+            {'$set': {
+             'jp_info.creator': creators,
+             }})
 
     if one['jp_info'].get('director', None):
         names = one['jp_info']['director']
@@ -37,7 +37,7 @@ for one in absoluteanime.find():
                 [y for y in [x.strip() for x in n.split(',')] if y])
 
         absoluteanime.update(
-        {'url': one['url']},
-        {'$set':{
-            'jp_info.director': directors,
-        }})
+            {'url': one['url']},
+            {'$set': {
+             'jp_info.director': directors,
+             }})
