@@ -38,48 +38,52 @@ class UnicodeWriter:
 
 client = MongoClient('localhost', 27017)
 db = client.anime
-absoluteanime = db.absoluteanime
+absoluteanime = db.absoluteanime_0418
 
 # absoluteanime_csv = codecs.open('absoluteanime.csv', 'w', 'utf-8')
-absoluteanime_csv = open('absoluteanime.csv', 'w')
+absoluteanime_csv = open('absoluteanime_0418.csv', 'w')
 
 csv_writer = UnicodeWriter(
     absoluteanime_csv, delimiter=",", lineterminator='\n',
     quotechar="\"", quoting=csv.QUOTE_MINIMAL)
 
-csv_writer.writerow(['url', 'main_title', 'official_title', 'date', 'creator',
-                    'director', 'genre', 'company', 'released', 'characters', 'description'])
+csv_writer.writerow(['oid', 'main_title', 'creator',
+                    'director', 'released_type', 'released_episodes'])
 
 for one in absoluteanime.find():
-    url = one['url']
+    oid = str(one['_id'])
     main_title = one['jp_info'].get('title', [''])[0]
-    official_title = one['us_info'].get('title', [''])[0]
-    date = one['jp_info'].get('dates', [''])[0]
-    creator = ', '.join(one['jp_info'].get('creator', []))
-    director = ', '.join(one['jp_info'].get('director', []))
-    genre = ', '.join(one['jp_info'].get('genre', []))
-    company = ', '.join(one['jp_info'].get('company', []))
-    released = one['jp_info'].get('released', [''])[0]
-    description = one.get('description', [''])[0]
+    if not main_title:
+        main_title = one['us_info'].get('title', [''])[0]
+    # date = one['jp_info'].get('dates', [''])[0]
+    creator = ', '.join(sorted(one['jp_info'].get('creator', [])))
+    director = ', '.join(sorted(one['jp_info'].get('director', [])))
+    # genre = ', '.join(one['jp_info'].get('genre', []))
+    # company = ', '.join(one['jp_info'].get('company', []))
+    # released = one['jp_info'].get('released', [''])[0]
+    # description = one.get('description', [''])[0]
+    released_type = str(one['jp_info']['released_type']) if one['jp_info']['released_type'] else ""
+    released_episodes = str(one['jp_info']['released_episodes']) if one['jp_info']['released_episodes'] else ""
 
-    characters = []
 
-    jp_chars = []
-    for jp_char in one['jp_info'].get('characters', []):
-        if jp_char['name'] != '--?--':
-            jp_chars.append(jp_char['name'])
+    # characters = []
 
-    if len(jp_chars) == 0:
-        us_chars = []
-        for us_char in one['us_info'].get('characters', []):
-            if us_char['name'] != '--?--':
-                us_chars.append(us_char['name'])
-        characters = ', '.join(us_chars)
+    # jp_chars = []
+    # for jp_char in one['jp_info'].get('characters', []):
+    #     if jp_char['name'] != '--?--':
+    #         jp_chars.append(jp_char['name'])
 
-    else:
-        characters = ', '.join(jp_chars)
+    # if len(jp_chars) == 0:
+    #     us_chars = []
+    #     for us_char in one['us_info'].get('characters', []):
+    #         if us_char['name'] != '--?--':
+    #             us_chars.append(us_char['name'])
+    #     characters = ', '.join(us_chars)
+
+    # else:
+    #     characters = ', '.join(jp_chars)
 
     csv_writer.writerow(
-        [url, main_title, official_title, date, creator, director, genre, company, released, characters, description])
+        [oid, main_title, creator, director, released_type, released_episodes])
 
 absoluteanime_csv.close()
