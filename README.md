@@ -13,14 +13,14 @@ This project integrate anime data from [anidb.net](http://anidb.net/), [absolute
 5. python-amazon-product-api
 6. tweepy
 7. MongoDB
+8. jellyfish
+9. scikit-learn 
+10. flickrapi
 
 #### TODOs
 
-1. add db in /config.py
-2. add db controller in /app/model/
-3. add amazon api code
-4. add twitter api code
-5. refine data
+1. add twitter api code
+2. Integrate module to make it run! 
 
 #### Run
 Execute
