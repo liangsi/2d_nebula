@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+# coding:utf-8
+import tweepy
+import web
+import json
+from tweepy import OAuthHandler
+
+# == OAuth Authentication ==
+#
+# This mode of authentication is the new preferred way
+# of authenticating with Twitter.
+
+# The consumer keys can be found on your application's Details
+# page located at https://dev.twitter.com/apps (under "OAuth settings")
+class Twitter():
+  def __init__(self):
+    consumer_key="uwjrunBgh3Fc0mCjWCa8X1V45"
+    consumer_secret="cXhk6QvjaFDbtdldOma70UtB2mWV1UxtPAjnKoHjWZMJpzawBX"
+
+    # The access tokens can be found on your applications's Details
+    # page located at https://dev.twitter.com/apps (located 
+    # under "Your access token")
+    access_token="183142839-axmsfiAe8HWpLkD0oNrjNRElg4sHHxy95yUcPrbE"
+    access_token_secret="rPyNbnZIj8LRpJwyCssTUFyWSbZKfHwJrtAoN3GrwPfYl"
+
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+
+    self.api = tweepy.API(auth)
+
+    # Get the general words on twitter
+    inputfile = open("en.txt",'r')
+    lines = inputfile.readlines()
+    inputfile.close()
+
+    f = 0 #sum of frequency
+    for line in lines:
+      l = line.strip().split(' ')
+      f = f + int(l[1])
+    f2 = 0 #sum of frequency
+    ff = f * 0.99 #regard the first 0.99 as general words
+
+    w = [] # general word set
+    for line in lines:
+        l = line.strip().split(' ')
+        f2 = f2 + int(l[1])
+        if(f2 <= ff):
+            w.append(l[0])
+        else:
+            break
+    self.g_word = set(w)
+
+  def search(self, keywords):
+    i = 0
+    for tweet in tweepy.Cursor(self.api.search,
+                           q=keywords,
+                           count=1,
+                           result_type="recent",
+                           include_entities=False,
+                           lang="en").items():
+      print tweet.text
+      i=i+1
+      if(i>20): break;

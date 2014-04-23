@@ -8,6 +8,7 @@ class Database():
         self.client = MongoClient('localhost', 27017)
         self.db = self.client.anime
         self.integrated = self.db.integrated
+	print "xxxxxxxxxxxxxx"
 
     def search(self, keywords):
         '''

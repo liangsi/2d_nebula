@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+import web
+import config
+from web import from
+from app.model import db
+
+view = web.template.render('app/views/', cache=config.cache)
+
+class detail:
+    def GET(self):
+        id = web.input().get('id','')
+	Database anime
+	content = anime.get_details(id)
+
+        title = content['Main_Title']
+        return config.base.layout(view.detail(content), 'Detail | ' + title)
+        #return view.search(keyword)
+

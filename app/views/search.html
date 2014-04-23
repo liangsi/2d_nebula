@@ -1,20 +1,20 @@
-$def with (anime_list)
+$def with (content)
     
     <link href="/static/css/search.css" rel="stylesheet">
 	<div class="main row">
     		<ul class="col-sm-8 results">
-				$for i in anime_list:
+				$for i in content['anime_list']:
 							<li class="media entry">
 								<div class="col-md-3">
-									<a href="#">
+									<a href="/detail/?id=$i['oid']">
 										<div class="thumbnail">
-											<img class="media-object" src="/static/test.jpg" alt="...">
+											<img class="media-object" src="/static/test.jpg" alt="$i['title']">
 										</div>
 									</a>
 								</div>
 								<div class="media-body col-md-9">
 									<div class="nav">
-										<h4 class="navbar-header"><a href="#">$i['Main_Title']</a></h4>
+										<h4 class="navbar-header"><a href="/detail/?id=$i['oid']">$i['title']</a></h4>
 										<div class="rating navbar-right navbar-text">
 											<span class="glyphicon glyphicon-star"></span>
 											<span class="glyphicon glyphicon-star"></span>
@@ -26,28 +26,32 @@ $def with (anime_list)
 									<div class="row">
 										<dl class="dl-horizontal">
 											<dt>Type</dt>
-											<dd>$i['Type']</dd>
+											<dd>$i['released_type'] $i['released_episodes']</dd>
 											<dt>Year</dt>
-											<dd>$i['Year']</dd>
-											$if i['staffs'].get('Direction',None):
-												<dt>Director</dt>
-												<dd>$'. '.join(i['staffs']['Direction'])</dd>
-											$if i['staffs'].get('Animation Work',None):
-												<dt>Animation Work</dt>
-												<dd>$'. '.join(i['staffs']['Animation Work'])</dd>
-											$if i['staffs'].get('Original Work',None):
-												<dt>Original Work</dt>
-												<dd>$'. '.join(i['staffs']['Original Work'])</dd>
+											<dd>$i['begin_date'] - $i['end_date']</dd>
+											<dt>Director</dt>
+											<dd>$'. '.join(i['directors'])</dd>
+											<dt>Animation Work</dt>
+											<dd>$'. '.join(i['company'])</dd>
+											<dt>Original Work</dt>
+											<dd>$'. '.join(i['creators'])</dd>
 											<dt>description</dt>
-											<dd>$i['desc'][:100]  ...
-											</dd>
+											<dd>$i['desc'][:100]  ...</dd>
 										</dl>
 									</div>
 								</div>
 							</li>
 			</ul>
 			<div class="col-sm-3 col-sm-offset-1 sidebar">
-				Tweets!!!
+				$for i in content['twitter']:
+					<div class="media">
+						<a class="pull-left" href="#">
+							<img class="media-object" src="$i.user.profile_image_url" alt="...">
+						</a>
+						<div class="media-body"> 
+							$i.text 
+						</div>
+					</div>
 			</div>      	
-      	</div>
+		</div>
 		<script src="/static/js/search.js" type="text/javascript"></script>

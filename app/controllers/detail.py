@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 import web
 import config
+from app.model import db
+from app.controllers import twitter
 
 view = web.template.render('app/views/', cache=config.cache)
 
 class detail:
     def GET(self):
         id = web.input().get('id','')
-        content = { "_id" : { "$oid" : "532e91221d41c8222cc7b8de" }, "Average" : "8.63", "Rating" : "9.12", "url" : "http://anidb.net/perl-bin/animedb.pl?show=anime&aid=7249", "casts" : [ { "char" : "Akiko", "creator" : "Yukana", "char_link" : "http://anidb.net/perl-bin/animedb.pl?show=character&charid=13551", "creator_link" : "http://anidb.net/perl-bin/animedb.pl?show=creator&creatorid=15" }, { "char" : "Masaki", "creator" : "Nojima Kenji", "char_link" : "http://anidb.net/perl-bin/animedb.pl?show=character&charid=13548", "creator_link" : "http://anidb.net/perl-bin/animedb.pl?show=creator&creatorid=196" }, { "char" : "Nagi", "creator" : "Satou Rina", "char_link" : "http://anidb.net/perl-bin/animedb.pl?show=character&charid=13550", "creator_link" : "http://anidb.net/perl-bin/animedb.pl?show=creator&creatorid=97" }, { "char" : "Rikuo", "creator" : "Fukuyama Jun", "char_link" : "http://anidb.net/perl-bin/animedb.pl?show=character&charid=13547", "creator_link" : "http://anidb.net/perl-bin/animedb.pl?show=creator&creatorid=14" }, { "char" : "Sammy", "creator" : "Tanaka Rie", "char_link" : "http://anidb.net/perl-bin/animedb.pl?show=character&charid=13549", "creator_link" : "http://anidb.net/perl-bin/animedb.pl?show=creator&creatorid=135" }, { "char" : "Chie", "creator" : "Sawashiro Miyuki", "char_link" : "http://anidb.net/perl-bin/animedb.pl?show=character&charid=13555", "creator_link" : "http://anidb.net/perl-bin/animedb.pl?show=creator&creatorid=38" }, { "char" : "Koji", "creator" : "Nakao Michio", "char_link" : "http://anidb.net/perl-bin/animedb.pl?show=character&charid=13552", "creator_link" : "http://anidb.net/perl-bin/animedb.pl?show=creator&creatorid=3997" }, { "char" : "Naoko", "creator" : "Mizutani Yuuko", "char_link" : "http://anidb.net/perl-bin/animedb.pl?show=character&charid=13557", "creator_link" : "http://anidb.net/perl-bin/animedb.pl?show=creator&creatorid=1870" }, { "char" : "Rina", "creator" : "Itou Miki", "char_link" : "http://anidb.net/perl-bin/animedb.pl?show=character&charid=13553", "creator_link" : "http://anidb.net/perl-bin/animedb.pl?show=creator&creatorid=229" }, { "char" : "Setoro", "creator" : "Sugita Tomokazu", "char_link" : "http://anidb.net/perl-bin/animedb.pl?show=character&charid=13556", "creator_link" : "http://anidb.net/perl-bin/animedb.pl?show=creator&creatorid=45" } ], "image" : "http://img7.anidb.net/pics/anime/53146.jpg", "Review_Rating" : "9.33", "titles" : { "zh-Hans" : "夏娃的时间 剧场版", "fa" : "فیلم زمان عصرگاهی", "ja" : "イヴの時間 劇場版" }, "Resources" : [ "Allcinema", "ANN", "Official page (jp)", "Wiki (en)", "Wiki (jp)", "AnimeNfo", "Anison", "MAL", "[more]" ], "Year" : "06.03.2010", "staffs" : { "Direction" : [ "Yoshiura Yasuhiro" ], "Animation Work" : [ "Studio Rikka" ], "Music" : [ "Okada Tooru" ], "Original Work" : [ "Yoshiura Yasuhiro" ], "Character Design" : [ "Chayama Ryuusuke" ] }, "Type" : "Movie", "Main_Title" : "Eve no Jikan Gekijouban", "Categories" : [ "Android", "Daily Life", "Dystopia", "Sci-Fi", "Seinen", "similar" ], "desc" : "\n* A theatrical feature-length version of the " }
-		
-        title = content['Main_Title']
+        anime = db.Database()
+        (content,related_animes) = anime.get_details(id)
+        content['twitter'] = []
+        title = content['title']
         return config.base.layout(view.detail(content), 'Detail | ' + title)
-        #return view.search(keyword)
+
 

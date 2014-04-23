@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+import web
+import config
+
+from app.model import db
+
+view = web.template.render('app/views/', cache=config.cache)
+
+class result:
+    def GET(self):
+        print web.input()
+	# keyword in get
+        keyword = web.input().get('keyword','')
+		
+	## TODO anime_list = db.find(keyword)
+	anime = Database()
+	anime_list = anime.search(keyword)
+
+        return config.base.layout(view.search(anime_list), title='Search Results')
+

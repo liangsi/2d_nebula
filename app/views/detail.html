@@ -11,7 +11,7 @@ $def with (content)
 	    			</div>
 	    			<div class="meta-info col-sm-8">
 	  				<div class="nav">
-	    				<h4 class="navbar-header">$content['Main_Title']</h4>
+	    				<h4 class="navbar-header">$content['title']</h4>
 		    			<div class="rating navbar-right navbar-text">
 		    				<span class="glyphicon glyphicon-star"></span>
 		    				<span class="glyphicon glyphicon-star"></span>
@@ -23,18 +23,15 @@ $def with (content)
 	    			<div class="row">
 	    				<dl class="dl-horizontal">
 	    					<dt>Type</dt>
-	    					<dd>$content['Type']</dd>
-	    					<dt>Year</dt>
-	    					<dd>$content['Year']</dd>
-							$if content['staffs'].get('Direction',None):
-								<dt>Director</dt>
-								<dd>$'. '.join(content['staffs']['Direction'])</dd>
-							$if content['staffs'].get('Animation Work',None):
-								<dt>Animation Work</dt>
-								<dd>$'. '.join(content['staffs']['Animation Work'])</dd>
-							$if content['staffs'].get('Original Work',None):
-								<dt>Original Work</dt>
-								<dd>$'. '.join(content['staffs']['Original Work'])</dd>
+							<dd>$content['released_type'] $content['released_episodes']</dd>
+							<dt>Year</dt>
+							<dd>$content['begin_date'] - $content['end_date']</dd>
+							<dt>Director</dt>
+							<dd>$'. '.join(content['directors'])</dd>
+							<dt>Animation Work</dt>
+							<dd>$'. '.join(content['company'])</dd>
+							<dt>Original Work</dt>
+							<dd>$'. '.join(content['creators'])</dd>
 	    				</dl>
 	    			</div>
     			</div>
@@ -101,6 +98,15 @@ $def with (content)
 	    		</div>   	
     		</div>
 			<div class="col-sm-3 col-sm-offset-1 sidebar">
-				Tweets!!!
+				$for i in content['twitter']:
+					<div class="media">
+						<a class="pull-left" href="#">
+							<img class="media-object" src="$i.user.profile_image_url" alt="$i.user.name">
+						</a>
+						<div class="media-body"> 
+							<h4 class="media-heading">$i.user.name</h4>
+							$i.text 
+						</div>
+					</div>
 			</div>      	
       	</div>
