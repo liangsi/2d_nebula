@@ -16,7 +16,7 @@ class Database():
                 db.adminCommand({setParameter:true, textSearchEnabled:true})
             2. create full text index
                 db.integrated.ensureIndex({'desc': 'text', 'directors':'text', 'creators':'text', 'title': 'text'})
-        
+
         full text search on fields: desc, directors, creator, title
         TODO: create a list of casts and characters, create text index on these two filed
         '''
@@ -31,7 +31,7 @@ class Database():
             anime = {}
             anime['oid'] = str(res['obj']['_id'])
             anime['title'] = res['obj']['title']
-            anime['image_files'] = res['obj']['image_files']
+            anime['image_file'] = res['obj']['image_files'][0] if len(res['obj']['image_files']) > 0 else '/static/images/default.jpg'
             anime['released_type'] = res['obj'].get('released_type', 'unknown')
             anime['released_episodes'] = res['obj'].get('released_episodes', 'unknown')
             anime['begin_date'] = res['obj']['begin_date']
@@ -53,13 +53,21 @@ class Database():
         related_animes = []
         if result['related']:
             for res in result['related']:
-                self.integrated.find_one({'absoluteanime_url' : anime['url']})
+                related_anime = self.integrated.find_one({'absoluteanime_url' : res['url']})
+
+                if not related_anime:
+                    continue
 
                 anime = {}
-                anime['oid'] = str(res['obj']['_id'])
-                anime['title'] = res['title']
-                anime['images'] = res['images']
+                anime['oid'] = str(related_anime['_id'])
+                anime['title'] = related_anime['title']
+                anime['image_file'] = related_anime['image_files'][0] if len(related_anime['image_files']) > 0 else '/static/images/default.jpg'
 
                 related_animes.append(anime)
+
+        # pick one image to display
+        result['image_file'] = result['image_files'][0] if len(result['image_files']) > 0 else '/static/images/default.jpg'
+        # pick one desc
+        result['desc'] = sorted(result['desc'], key=len)[-1] if result['desc'] else []
 
         return result, related_animes
