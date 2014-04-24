@@ -75,8 +75,13 @@ class Twitter():
         c = list(set(c))
 
         c = [i.lower() for i in c]
+        for i in xrange(0,len(c)):
+            if c[i][0] == '"':
+                c[i] = c[i][1:-1]
         for i in c:
-            if i.lower() in self.g_word:
+            if i in self.g_word:
+                c.remove(i)
+            if i == '':
                 c.remove(i)
     elif(len(c) == 1):
         keywords = (anime['title'])
@@ -86,9 +91,8 @@ class Twitter():
 
     while(k<n and j<len(c)):
         if(not isTitle):
-            keywords = ('#'+anime['title']+' '+c[j])
+            keywords = (random.choice(c)+' '+anime['title'])
             j = j+1
-        print keywords
         for tweet in tweepy.Cursor(self.api.search,
                                q=keywords,
                                count=n,
@@ -103,7 +107,6 @@ class Twitter():
           if(flag):
             continue
           result.append(tweet)
-          print k
           k=k+1
           if(k>n): break
     return result

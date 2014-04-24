@@ -95,17 +95,34 @@ $def with (content)
 						    <img class="media-object" src="/static/test.jpg" alt="...">
 					  	</div>
 				  	</div>
-	    		</div>   	
+	    		</div>  
+	    		<div class="amazon detail">
+					<h4 class="subtitle">Amazon Reviews</h4>
+				$if len(content['amazon'])>1:
+					<iframe src="$content['amazon'][0]['CustomerReviews']"></iframe> 
+	    		</div>  	
     		</div>
 			<div class="col-sm-3 col-sm-offset-1 sidebar">
+				<h4 class="subtitle">Related Tweets</h4>
 				$for i in content['twitter']:
 					<div class="media">
 						<a class="pull-left" href="#">
 							<img class="media-object" src="$i.user.profile_image_url" alt="$i.user.name">
 						</a>
 						<div class="media-body"> 
-							<h4 class="media-heading">$i.user.name</h4>
+							<h5 class="media-heading">$i.user.name</h5>
 							$i.text 
+						</div>
+					</div>
+				<h4 class="subtitle">Related DVDs</h4>
+				$for i in content['amazon'][:8]:
+					<div class="media">
+						<a class="pull-left" href="$i['DetailPageURL']">
+							<img class="media-object" src="$i['SmallImage']" alt="$i['Title']">
+						</a>
+						<div class="media-body"> 
+							<h5 class="media-heading">$i['Title']</h5>
+							<p>Lowest Price: $i['LowestNewPrice']</p> 
 						</div>
 					</div>
 			</div>      	
