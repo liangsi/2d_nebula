@@ -20,7 +20,7 @@ class result:
             content['anime_list'] = anime_list
 
             t = twitter.Twitter()
-            content['twitter'] = t.search(keyword)
+            content['twitter'] = t.search(keyword, 8)
         else:
             content['twitter'] = []
             content['anime_list'] = []

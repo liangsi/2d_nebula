@@ -11,7 +11,9 @@ class detail:
         id = web.input().get('id','')
         anime = db.Database()
         (content,related_animes) = anime.get_details(id)
-        content['twitter'] = []
+        t = twitter.Twitter()
+        content['twitter'] = t.detail(content,5)
+        print len(content['twitter'])
         title = content['title']
         return config.base.layout(view.detail(content), 'Detail | ' + title)
 
