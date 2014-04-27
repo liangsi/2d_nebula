@@ -109,4 +109,4 @@ class Twitter():
           result.append(tweet)
           k=k+1
           if(k>n): break
-    return result
+    return isTitle, c, result

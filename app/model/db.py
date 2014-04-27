@@ -71,3 +71,4 @@ class Database():
         result['desc'] = sorted(result['desc'], key=len)[-1] if result['desc'] else []
 
         return result, related_animes
+        

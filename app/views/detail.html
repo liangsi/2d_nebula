@@ -64,7 +64,7 @@ $def with (content)
 	    		</div>   
 				<div class="related detail">
 					<h4 class="subtitle">Related Animes</h4>
-	    			<div class="row">
+	    			<div class="row" id="related">
 						$for i in content['related_animes']:
 							<a href="/detail/?id=$i[1]">
 		    					<div class="thumbnail col-sm-3">
@@ -117,4 +117,3 @@ $def with (content)
       	</div>
 
 		<script src="/static/js/detail.js" type="text/javascript"></script>
-      	

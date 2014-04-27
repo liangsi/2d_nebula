@@ -17,7 +17,7 @@ class detail:
         t = twitter.Twitter()
         amazon = amazon_api.AmazonDvd()
         flickr = flickr_api.Flickr()
-        content['amazon'] = amazon.find_product(content['title'],content['directors'][0])
+        content['amazon'] = amazon.find_product(content['title'],content['directors'][0] if content['directors'] else None)
         (isTitle,c,content['twitter']) = t.detail(content,5)
 
         # something disgusting about the keywords... G.... I don't want to talk about it...
