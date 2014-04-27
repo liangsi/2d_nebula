@@ -5,8 +5,8 @@ import flickrapi
 class Flickr(object):
 
     def __init__(self):
-        self.api_key = 'api_key here'
-        self.secret = 'secret here'
+        self.api_key = 'cc116455ef46bac54656bf51ed3f8665'
+        self.secret = '0ba2cf9d9433057f'
 
         self.api = flickrapi.FlickrAPI(self.api_key, self.secret)
 
@@ -22,7 +22,7 @@ class Flickr(object):
         photos = []
 
         for node in response.findall('.//photo'):
-            url = 'http://farm%s.staticflickr.com/%s/%s_%s_m.jpg' % (node.get('farm'), node.get('server'), node.get('id'), node.get('secret'))
+            url = 'http://farm%s.staticflickr.com/%s/%s_%s_z.jpg' % (node.get('farm'), node.get('server'), node.get('id'), node.get('secret'))
             photos.append(url)
 
         return photos

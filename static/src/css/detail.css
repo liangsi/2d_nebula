@@ -10,3 +10,6 @@ h4.subtitle{
 .pic{
 	padding: 10px;
 }
+#flickr img{
+	height: 170px;
+}
