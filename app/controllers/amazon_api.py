@@ -28,9 +28,13 @@ class AmazonDvd():
         '''
         return top 3 products
         '''
-        items = self.api.item_search(
-            'DVD', Keywords=keywords, Director=None, limit=3,
-            Sort='relevancerank', MerchantId='Amazon', ResponseGroup='Large')
+        try:
+            items = self.api.item_search(
+                'DVD', Keywords=keywords, Director=None, limit=3,
+                Sort='relevancerank', MerchantId='Amazon', ResponseGroup='Large')
+        except Exception, e:
+            return []
+        
 
         dvds = []
         for item in items:
