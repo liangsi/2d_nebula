@@ -15,14 +15,14 @@ from tweepy import OAuthHandler
 # page located at https://dev.twitter.com/apps (under "OAuth settings")
 class Twitter():
   def __init__(self):
-    consumer_key="uwjrunBgh3Fc0mCjWCa8X1V45"
-    consumer_secret="cXhk6QvjaFDbtdldOma70UtB2mWV1UxtPAjnKoHjWZMJpzawBX"
+    consumer_key="wGGVXIpGjGKmUdR2I8WlSQ"
+    consumer_secret="qlCnMu5E8avZi3C1NbJ34YGMunRcGMFWBwZbJXLwFQ"
 
     # The access tokens can be found on your applications's Details
     # page located at https://dev.twitter.com/apps (located 
     # under "Your access token")
-    access_token="183142839-axmsfiAe8HWpLkD0oNrjNRElg4sHHxy95yUcPrbE"
-    access_token_secret="rPyNbnZIj8LRpJwyCssTUFyWSbZKfHwJrtAoN3GrwPfYl"
+    access_token="2332391124-JPGMZ9Pb7mIldZMesH2GBGOrWKsOz0hAYHP5jnY"
+    access_token_secret="WwQrTREzmuM20P4moviaTu2kaGgkdvX6rLbtVWPau4fms"
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
@@ -40,7 +40,7 @@ class Twitter():
   def search(self, keywords, n):
     i = 0
     result = []
-
+    
     for tweet in tweepy.Cursor(self.api.search,
                            q=keywords,
                            count=n,

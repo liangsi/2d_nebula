@@ -5,7 +5,7 @@ view = web.template.render('app/views/', cache=config.cache)
 
 class index:
     def GET(self):
-        keyword = ''
-        return config.base.layout(view.search(keyword), title='Search')
+        # keyword = ''
+        return view.index()
         #return view.search(keyword)
 
